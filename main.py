@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+#!/usr/bin/env python3.10
 from subprocess import check_output
 
 INSTALL_DIR = "~/.tmux_macros"
