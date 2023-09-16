@@ -3,6 +3,7 @@ from subprocess import CalledProcessError
 import json
 import os
 import sys
+import time
 
 from main import get_tmux_option, MyException, INSTALL_DIR, run_command
 
@@ -15,7 +16,7 @@ def get_macros() -> dict[str, str]:
             with open(os.path.expanduser(file)) as f:
                 data = f.read()
             out |= json.loads(data.strip())
-        except FileNotFoundError:
+        except (FileNotFoundError, json.decoder.JSONDecodeError):
             pass
     out = {k: v for k, v in out.items() if "\n" not in k} # This would mess up fzf
     return out
